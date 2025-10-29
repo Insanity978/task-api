@@ -1,11 +1,19 @@
-import { body } from 'express-validator';
+import { param, query, body } from 'express-validator';
 import { checkValidationResults } from './handleValidationErrors.js';
 
+
+
+export const validateId = [
+  param('id')
+  .isInt({ min: 1 })
+  .withMessage('ID must be a number'),
+
+  checkValidationResults,
+];
+
+
 export const validateTask = [
-  body('id')
-  .isInt()
-  .withMessage('ID must be a number')
-  .bail(),
+
 
   body('title')
     .trim()
