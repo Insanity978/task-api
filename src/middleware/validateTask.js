@@ -2,6 +2,11 @@ import { body } from 'express-validator';
 import { checkValidationResults } from './handleValidationErrors.js';
 
 export const validateTask = [
+  body('id')
+  .isInt()
+  .withMessage('ID must be a number')
+  .bail(),
+
   body('title')
     .trim()
     .escape()
